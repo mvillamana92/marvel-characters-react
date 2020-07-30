@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Searcher from "./Searcher";
 
 const Home = () => {
   return (
-    <div>
-      <h1>MARVEL CHARACTERS</h1>
-      <Link to="/character">See characters list</Link>
+    <div className="row">
+      <div className="col-12">
+        <img src={require("../img/MarvelLogo.svg")} width="300" height="200" />
+      </div>
+      <div className="col-12">
+        <Link to="/character">See characters list</Link>
+      </div>
     </div>
   );
 };

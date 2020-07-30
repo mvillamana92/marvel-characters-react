@@ -1,13 +1,29 @@
-const getCharactersList = async () => {
-  const CHARACTERS_LIST = `https://gateway.marvel.com:443/v1/public/characters?orderBy=name&limit=100&apikey=56e6b110b0a7cde25e3313d7f98fc505`;
-  try {
-    const response = await fetch(CHARACTERS_LIST);
+import { BASE_URL, API_KEY } from "./constants";
 
+const getCharactersList = async (limit, offset) => {
+  //let URL = BASE_URL + "?" + API_KEY;
+
+  const URL =
+    BASE_URL +
+    "?" +
+    "limit=" +
+    limit +
+    "&" +
+    "offset=" +
+    offset +
+    "&" +
+    "apikey=" +
+    API_KEY;
+
+  //console.log(URL);
+
+  try {
+    const response = await fetch(URL);
     if (!response.ok) {
       throw Error(response.statusText);
     }
     const data = await response.json();
-
+    //console.log(data);
     return data;
   } catch (error) {
     console.log(error);
