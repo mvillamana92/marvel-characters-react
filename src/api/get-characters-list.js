@@ -1,9 +1,7 @@
 import { BASE_URL, API_KEY } from "./constants";
 
-const getCharactersList = async (limit, offset) => {
-  //let URL = BASE_URL + "?" + API_KEY;
-
-  const URL =
+const getCharactersList = async (limit, offset, search) => {
+  let URL =
     BASE_URL +
     "?" +
     "limit=" +
@@ -15,6 +13,11 @@ const getCharactersList = async (limit, offset) => {
     "apikey=" +
     API_KEY;
 
+  if (search !== "") {
+    URL =
+      BASE_URL + "?" + "nameStartsWith=" + search + "&" + "apikey=" + API_KEY;
+  }
+
   //console.log(URL);
 
   try {
@@ -23,7 +26,7 @@ const getCharactersList = async (limit, offset) => {
       throw Error(response.statusText);
     }
     const data = await response.json();
-    //console.log(data);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
